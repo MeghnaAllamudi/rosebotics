@@ -14,7 +14,8 @@ def main():
 
 def run_tests():
     """ Runs various tests. """
-    run_test_go_stop()
+    #run_test_go_stop()
+    test_forward()
 
 
 def run_test_go_stop():
@@ -39,15 +40,23 @@ def run_test_go_stop():
     print(robot.left_wheel.get_degrees_spun())
 
 
-def forward(n, x):
+def forward(robot, n, x):
     robot = rb.Snatch3rRobot
     time_pass = time.time()
     delta_time = n
+    robot.right_wheel.start_spinning(x)
+    robot.left_wheel.start_spinning(x)
     while True:
-        robot.right_wheel.start_spinning(x)
-        robot.left_wheel.start_spinning(x)
-        if time.time() == time_pass + delta_time:
-            break
 
+        if time.time() >= time_pass + delta_time:
+            break
+            robot.right_wheel.stop_spinning()
+            robot.left_wheel.stop_spinning()
+
+
+def test_forward():
+    "Tests forward function"
+    robot = rb.Snatch3rRobot
+    forward(robot, 10, 100)
 
 main()
