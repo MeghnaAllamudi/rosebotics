@@ -49,10 +49,11 @@ def turn(n,x):
     while True:
         robot.left_wheel.start_spinning(x)
         robot.right_wheel.start_spinning(0)
-        if time.time() == time_start() + deltatime:
-            robot.left_wheel.stop_spinning()
-            robot.right_wheel.stop_spinning()
-    
+        if time.time() >= time_start() + deltatime:
+            break
+    robot.left_wheel.stop_spinning()
+    robot.right_wheel.stop_spinning()
+
 def turn_test():
     robot = rb.Snatch3rRobot()
     turn(robot,20,20)
