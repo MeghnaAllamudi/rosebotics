@@ -9,12 +9,15 @@ import time
 
 def main():
     """ Runs tests. """
+    #run_tests()
     run_tests()
+
 
 
 def run_tests():
     """ Runs various tests. """
-    run_test_go_stop()
+   # run_test_go_stop()
+   turn_test()
 
 
 def run_test_go_stop():
@@ -47,8 +50,12 @@ def turn(n,x):
         robot.left_wheel.start_spinning(x)
         robot.right_wheel.start_spinning(0)
         if time.time() == time_start() + deltatime:
-            break
-
+            robot.left_wheel.stop_spinning()
+            robot.right_wheel.stop_spinning()
+    
+def turn_test():
+    robot = rb.Snatch3rRobot()
+    turn(robot,20,20)
 
 
 main()
