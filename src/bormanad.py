@@ -17,6 +17,7 @@ def run_tests():
     run_test_go_stop()
 
 
+
 def run_test_go_stop():
     """ Tests the   go   and   stop   Snatch3rRobot methods. """
     robot = rb.Snatch3rRobot()
@@ -47,6 +48,8 @@ def forward(n, x):
         robot.right_wheel.start_spinning(x)
         robot.left_wheel.start_spinning(x)
         if time.time() == time_pass + delta_time:
+            robot.right_wheel.stop_spinning()
+            robot.left_wheel.stop_spinning()
             break
 
 
